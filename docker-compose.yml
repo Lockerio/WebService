@@ -2,17 +2,21 @@ version: '3'
 
 services:
   app:
-    build: ./WebService
+    build: ./src
     container_name: flask_app
     environment:
       - DB_URL=postgresql://user:password@db:5432/containers
-    command: python -m app.main.py
+    command: tail -f /dev/null
+    expose:
+      - 5000
     depends_on:
       - db
   db:
     image: postgres:13-alpine
     volumes:
       - ./pg_db:/var/lib/postgresql/data/
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password 

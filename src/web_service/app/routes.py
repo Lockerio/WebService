@@ -9,6 +9,11 @@ from app.utils.validator import Validator
 routes_blueprint = Blueprint('routes_blueprint', __name__)
 
 
+@routes_blueprint.route('/')
+def main() -> Response:
+    return jsonify({'response': 'hi'})
+
+
 @routes_blueprint.route('/api/get_questions', methods=['POST'])
 def get_questions() -> Response:
     data = request.get_json()

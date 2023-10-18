@@ -2,12 +2,12 @@ FROM python:3.11
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /src
+WORKDIR /web_service
 
-ENV PYTHONPATH ./src
-
-COPY src/requirements.txt .
+COPY web_service/requirements.txt .
 
 RUN pip install --upgrade pip &&  python -m pip install -r requirements.txt
 
-COPY /src .
+COPY /web_service/alembic ./alembic
+COPY /web_service/app ./app
+COPY /web_service/alembic.ini .
