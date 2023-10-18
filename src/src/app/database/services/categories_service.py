@@ -1,4 +1,4 @@
-from typing import List, Type
+from typing import Type
 
 from app.database.models import Category
 from app.database.serializers.categories_serializer import CategorySerializer

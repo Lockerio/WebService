@@ -7,8 +7,6 @@ from alembic import context
 
 from app.config import DB_URL
 from app.database.database import Base
-from app.database.models import Category, Question
-
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

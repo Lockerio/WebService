@@ -6,7 +6,7 @@ services:
     container_name: flask_app
     environment:
       - DB_URL=postgresql://user:password@db:5432/containers
-    command: python app/main.py
+    command: python -m app.main.py
     depends_on:
       - db
   db:

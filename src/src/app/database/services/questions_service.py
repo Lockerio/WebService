@@ -1,4 +1,4 @@
-from typing import List, Type
+from typing import Type
 
 from app.database.models import Question
 from app.database.serializers.questions_serializer import QuestionSerializer

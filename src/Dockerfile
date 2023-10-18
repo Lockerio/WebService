@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /src
 
-ENV PYTHONPATH ./src/app
+ENV PYTHONPATH ./src
 
 COPY src/requirements.txt .
 
