@@ -166,6 +166,4 @@ cython_debug/
 
 *.bkp
 
-config.py
-
 /pg_db

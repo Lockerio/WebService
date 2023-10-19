@@ -6,12 +6,8 @@ from app.database.container import categoryService, questionService
 from app.utils.json_parser import JSONParser
 from app.utils.validator import Validator
 
+
 routes_blueprint = Blueprint('routes_blueprint', __name__)
-
-
-@routes_blueprint.route('/')
-def main() -> Response:
-    return jsonify({'response': 'hi'})
 
 
 @routes_blueprint.route('/api/get_questions', methods=['POST'])
@@ -50,6 +46,6 @@ def get_questions() -> Response:
                 response = question_data
                 break
             except Exception:
-                raw_question = requests.get('https://jservice.io/api/random?count=1').json()[0]
+                raw_question = requests.get('https://jservice.io/api/random?count=1').json().pop()
 
     return jsonify(response)
