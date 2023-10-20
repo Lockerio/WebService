@@ -19,7 +19,6 @@ class QuestionService:
             raise Exception('Такой вопрос уже существует!')
         return self.serializer.create(data)
 
-
     def update(self, data: dict) -> Question:
         question = self.serializer.get_one(data['id'])
         if question:

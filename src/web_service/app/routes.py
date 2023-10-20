@@ -3,6 +3,7 @@ import requests
 from flask import Blueprint, jsonify, Response, request
 
 from app.database.container import categoryService, questionService
+from app.utils.formatter import Formatter
 from app.utils.json_parser import JSONParser
 from app.utils.validator import Validator
 
@@ -10,8 +11,24 @@ from app.utils.validator import Validator
 routes_blueprint = Blueprint('routes_blueprint', __name__)
 
 
-@routes_blueprint.route('/api/get_questions', methods=['POST'])
-def get_questions() -> Response:
+@routes_blueprint.route('/api/get_saved_categories')
+def get_saved_categories() -> Response:
+    categories = categoryService.get_all()
+    categories_JSON = Formatter.format_list_of_objects_to_dict(categories,
+                                                               Formatter.format_category_data_to_dict)
+    return jsonify(categories_JSON)
+
+
+@routes_blueprint.route('/api/get_saved_questions')
+def get_saved_questions() -> Response:
+    questions = questionService.get_all()
+    questions_JSON = Formatter.format_list_of_objects_to_dict(questions,
+                                                              Formatter.format_question_data_to_dict)
+    return jsonify(questions_JSON)
+
+
+@routes_blueprint.route('/api/request_questions', methods=['POST'])
+def request_questions() -> Response:
     data = request.get_json()
     raw_questions_num = data['questions_num']
 
