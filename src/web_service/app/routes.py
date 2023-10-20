@@ -30,10 +30,11 @@ def get_saved_questions() -> Response:
 @routes_blueprint.route('/api/request_questions', methods=['POST'])
 def request_questions() -> Response:
     data = request.get_json()
-    raw_questions_num = data['questions_num']
-
     try:
-         questions_num = Validator.assert_positive_int_value(raw_questions_num)
+        raw_questions_num = data['questions_num']
+        questions_num = Validator.assert_positive_int_value(raw_questions_num)
+    except KeyError:
+        return jsonify({'response': 'Вы не указали "questions_num" в теле запроса!'})
     except Exception as e:
         return jsonify({'response': str(e)})
 
